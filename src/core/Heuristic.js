@@ -43,4 +43,8 @@ module.exports = {
   chebyshev: function (dx, dy) {
     return Math.max(dx, dy);
   },
+  custom: function (dx, dy) {
+    console.log("Using custom heuristic function!");
+    return dx - dy;
+  },
 };

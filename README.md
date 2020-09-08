@@ -1,6 +1,12 @@
 PathFinding.js
+
+- `npm install`
+- Follow [these](https://stackoverflow.com/a/60921145/6274300) steps.
+- run `./node_modules/.bin/gulp`
+
 ==============
-#### A comprehensive path-finding library in javascript. ####
+
+#### A comprehensive path-finding library in javascript.
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/qiao/PathFinding.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -8,8 +14,7 @@ PathFinding.js
 [![Dependency Status](https://david-dm.org/qiao/pathfinding.js.png)](https://david-dm.org/qiao/pathfinding.js)
 [![Documentation Status](https://readthedocs.org/projects/pathfindingjs/badge/)](https://readthedocs.org/projects/pathfindingjs/?badge=latest)
 
-Introduction
-------------
+## Introduction
 
 The aim of this project is to provide a path-finding library that can be easily incorporated into web games. It may run on Node.js or the browser.
 
@@ -19,8 +24,7 @@ Note that this project only provides path-finding algorithms for 2D space. If yo
 
 There is new documentation being written for PathFinding.js. You can read it [here](http://pathfindingjs.readthedocs.org/en/latest/). Note that this is in very early stages and far from complete so keep your eyes open for mistakes and don't hesitate to open a pull request in case you find one.
 
-Server
-------
+## Server
 
 If you want to use it in Node.js, you may install it via `npm`.
 
@@ -31,14 +35,12 @@ npm install pathfinding
 Then, in your program:
 
 ```javascript
-var PF = require('pathfinding');
+var PF = require("pathfinding");
 ```
 
 See the `Basic Usage` section below for usage details.
 
-
-Browser
--------
+## Browser
 
 If you have bower installed then you can install it with the following command:
 
@@ -49,24 +51,26 @@ bower install pathfinding
 By default bower will install pathfinding under the bower_components folder, so to include it in your page do something like:
 
 ```html
-<script type="text/javascript" src="path/to/bower_components/pathfinding/pathfinding-browser.min.js"></script>
+<script
+  type="text/javascript"
+  src="path/to/bower_components/pathfinding/pathfinding-browser.min.js"
+></script>
 ```
 
 You can also grab a release from the [Releases Page](https://github.com/imor/pathfinding-bower/releases) if you don't use bower.
 
-Basic Usage
------------
+## Basic Usage
 
 To build a grid-map of width 5 and height 3:
 
 ```javascript
-var grid = new PF.Grid(5, 3); 
+var grid = new PF.Grid(5, 3);
 ```
 
 By default, all the nodes in the grid will be able to be walked through.
 To set whether a node at a given coordinate is walkable or not, use the `setWalkableAt` method.
 
-For example, to set the node at (0, 1) to be un-walkable, where 0 is the x coordinate (from left to right), and 
+For example, to set the node at (0, 1) to be un-walkable, where 0 is the x coordinate (from left to right), and
 1 is the y coordinate (from up to down):
 
 ```javascript
@@ -79,26 +83,26 @@ It will initiate all the nodes in the grid with the same walkability indicated b
 
 ```javascript
 var matrix = [
-    [0, 0, 0, 1, 0],
-    [1, 0, 0, 0, 1],
-    [0, 0, 1, 0, 0],
+  [0, 0, 0, 1, 0],
+  [1, 0, 0, 0, 1],
+  [0, 0, 1, 0, 0],
 ];
 var grid = new PF.Grid(matrix);
 ```
 
 Currently there are 10 path-finders bundled in this library, namely:
 
-*  `AStarFinder` *
-*  `BestFirstFinder`
-*  `BreadthFirstFinder` *
-*  `DijkstraFinder` *
-*  `IDAStarFinder.js` *
-*  `JumpPointFinder` *
-*  `OrthogonalJumpPointFinder` *
-*  `BiAStarFinder`
-*  `BiBestFirstFinder`
-*  `BiBreadthFirstFinder` *
-*  `BiDijkstraFinder` *
+- `AStarFinder` \*
+- `BestFirstFinder`
+- `BreadthFirstFinder` \*
+- `DijkstraFinder` \*
+- `IDAStarFinder.js` \*
+- `JumpPointFinder` \*
+- `OrthogonalJumpPointFinder` \*
+- `BiAStarFinder`
+- `BiBestFirstFinder`
+- `BiBreadthFirstFinder` \*
+- `BiDijkstraFinder` \*
 
 The prefix `Bi` for the last four finders in the above list stands for the bi-directional searching strategy.
 
@@ -121,7 +125,14 @@ var path = finder.findPath(1, 2, 4, 2, grid);
 For the `matrix` defined previously, the `path` will be:
 
 ```javascript
-[ [ 1, 2 ], [ 1, 1 ], [ 2, 1 ], [ 3, 1 ], [ 3, 2 ], [ 4, 2 ] ]
+[
+  [1, 2],
+  [1, 1],
+  [2, 1],
+  [3, 1],
+  [3, 2],
+  [4, 2],
+];
 ```
 
 Be aware that `grid` will be modified in each path-finding, and will not be usable afterwards. If you want to use a single grid multiple times, create a clone for it before calling `findPath`.
@@ -130,9 +141,7 @@ Be aware that `grid` will be modified in each path-finding, and will not be usab
 var gridBackup = grid.clone();
 ```
 
-
-Advanced Usage
---------------
+## Advanced Usage
 
 When instantiating path-finders, you may pass in additional parameters to indicate which specific strategies to use.
 
@@ -142,7 +151,7 @@ In order to enable diagonal movement:
 
 ```javascript
 var finder = new PF.AStarFinder({
-    allowDiagonal: true
+  allowDiagonal: true,
 });
 ```
 
@@ -152,8 +161,8 @@ To enable the corner crossing prevention:
 
 ```javascript
 var finder = new PF.AStarFinder({
-    allowDiagonal: true,
-    dontCrossCorners: true
+  allowDiagonal: true,
+  dontCrossCorners: true,
 });
 ```
 
@@ -167,7 +176,7 @@ To use the chebyshev heuristic:
 
 ```javascript
 var finder = new PF.AStarFinder({
-    heuristic: PF.Heuristic.chebyshev
+  heuristic: PF.Heuristic.chebyshev,
 });
 ```
 
@@ -175,10 +184,10 @@ To build a `BestFirstFinder` with diagonal movement allowed and a custom heurist
 
 ```javascript
 var finder = new PF.BestFirstFinder({
-    allowDiagonal: true,
-    heuristic: function(dx, dy) {
-        return Math.min(dx, dy);
-    }
+  allowDiagonal: true,
+  heuristic: function (dx, dy) {
+    return Math.min(dx, dy);
+  },
 });
 ```
 
@@ -205,9 +214,7 @@ you may use `PF.Util.expandPath`.
 var newPath = PF.Util.expandPath(path);
 ```
 
-
-Development
-------------
+## Development
 
 Layout:
 
@@ -216,12 +223,12 @@ Layout:
     |-- src          # source code (algorithms only)
     |-- test         # test scripts
     |-- utils        # build scripts
-	|-- benchmark    # benchmarks
+    |-- benchmark    # benchmarks
     `-- visual       # visualization
 
-Make sure you have `node.js` installed, then use `npm` to install the dependencies: 
+Make sure you have `node.js` installed, then use `npm` to install the dependencies:
 
-    npm install -d 
+    npm install -d
 
 The build system uses gulp, so make sure you have it installed:
 
@@ -250,8 +257,7 @@ Or if you are feeling lazy, the default gulp task does everything(except running
 
     gulp
 
-License
--------
+## License
 
 [MIT License](http://www.opensource.org/licenses/mit-license.php)
 
