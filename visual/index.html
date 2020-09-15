@@ -38,10 +38,7 @@
       src="./lib/ui/jquery.ui.slider.min.js"
     ></script>
 
-    <script
-      type="text/javascript"
-      src="../lib/pathfinding-browser.min.js"
-    ></script>
+    <script type="text/javascript" src="../lib/pathfinding-browser.js"></script>
 
     <script type="text/javascript" src="./js/view.js"></script>
     <script type="text/javascript" src="./js/controller.js"></script>
@@ -75,12 +72,7 @@
             <h3>Heuristic</h3>
           </header>
           <div id="astar_heuristic" class="sub_options">
-            <input
-              type="radio"
-              name="astar_heuristic"
-              value="manhattan"
-              checked
-            />
+            <input type="radio" name="astar_heuristic" value="manhattan" />
             <label class="option_label">Manhattan</label> <br />
             <input type="radio" name="astar_heuristic" value="euclidean" />
             <label class="option_label">Euclidean</label> <br />
@@ -88,7 +80,7 @@
             <label class="option_label">Octile</label> <br />
             <input type="radio" name="astar_heuristic" value="chebyshev" />
             <label class="option_label">Chebyshev</label> <br />
-            <input type="radio" name="astar_heuristic" value="custom" />
+            <input type="radio" name="astar_heuristic" value="custom" checked />
             <label class="option_label">Custom</label> <br />
           </div>
 

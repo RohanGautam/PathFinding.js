@@ -45,6 +45,6 @@ module.exports = {
   },
   custom: function (dx, dy) {
     console.log("Using custom heuristic function!");
-    return dy;
+    return dx > dy ? dx / dy : dy;
   },
 };
