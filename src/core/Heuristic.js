@@ -43,8 +43,14 @@ module.exports = {
   chebyshev: function (dx, dy) {
     return Math.max(dx, dy);
   },
-  custom: function (dx, dy) {
+  underestimate: function (dx, dy) {
+    var distance = Math.sqrt(dx * dx + dy * dy);
     console.log("Using custom heuristic function!");
-    return dx > dy ? dx / dy : dy;
+    return distance * 0.5;
+  },
+  overestimate: function (dx, dy) {
+    var distance = Math.sqrt(dx * dx + dy * dy);
+    console.log("Using custom heuristic function!");
+    return distance * 2;
   },
 };
